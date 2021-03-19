@@ -1,0 +1,15 @@
+# /lib/systemd/system/gluster-metrics-exporter.service
+[Unit]
+Description=Export GlusterFS Metrics
+Requires=glusterd.service
+
+[Service]
+Type=simple
+Environment="CLUSTER=cluster"
+Environment="BIND_ADDRESS=127.0.0.1"
+Environment="HOSTNAME=%H"
+ExecStart=/usr/local/sbin/gluster-metrics-exporter --cluster="${CLUSTER}" --gluster-host="${HOSTNAME}" --bind="${BIND_ADDRESS}"
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
