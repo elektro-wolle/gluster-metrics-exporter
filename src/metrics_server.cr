@@ -31,7 +31,7 @@ module MetricsServer
       context.response << "Hello World"
     end
 
-    address = server.bind_tcp "0.0.0.0", args.port
+    address = server.bind_tcp args.bind, args.port
 
     puts "Launching server at #{address}"
     puts "Press Ctrl+C to exit"

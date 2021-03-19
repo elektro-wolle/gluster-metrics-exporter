@@ -9,6 +9,7 @@ struct Config
 
   property metrics_path = "/metrics",
            port = 9713,
+           bind = "0.0.0.0",
            cluster_metrics_path = "/clustermetrics",
            disable_volumes_all = false,
            gluster_executable_path = "/usr/sbin/gluster",
@@ -50,6 +51,10 @@ def parsed_args
       config.port = port.to_i
     end
     
+    parser.on("-b address", "--bind=address", "Bind Port to address (default: #{config.bind})") do |bind|
+      config.bind = bind
+    end
+
     parser.on("--cluster=NAME", "Cluster identifier") do |name|
       config.cluster_name = name
     end
