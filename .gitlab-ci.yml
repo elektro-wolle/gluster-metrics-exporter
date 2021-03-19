@@ -1,4 +1,4 @@
-image: crystallang/crystal:0.36.1-alpine
+image: crystallang/crystal:0.35.1-alpine
 
 stages:
   - build
