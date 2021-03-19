@@ -1,0 +1,19 @@
+image: crystallang/crystal:0.36.1-alpine
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - time -v shards install --production
+    - VERSION=${CI_COMMIT_REF_SLUG} time -v shards build --static --release --stats --time
+  only:
+    refs:
+      - branches
+  except:
+    refs:
+      - tags
+  artifacts:
+    expose_as: 'gluster-metrics-exporter'
+    paths: ['bin/gluster-metrics-exporter']
